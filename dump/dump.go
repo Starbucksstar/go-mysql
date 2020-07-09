@@ -211,6 +211,8 @@ func (d *Dumper) Dump(w io.Writer) error {
 		w.Write([]byte(fmt.Sprintf("USE `%s`;\n", d.TableDB)))
 	}
 
+	args = append(args, fmt.Sprintf("--ssl=%s", 1))
+
 	log.Infof("exec mysqldump with %v", args)
 	cmd := exec.Command(d.ExecutionPath, args...)
 
